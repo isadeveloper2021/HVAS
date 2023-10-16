@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">HVAS</string>
+    <string name="select">Type HVAS</string>
+    <string name="app_copyright">Powered by Isa Tech</string>
+
+    <string name="header_subtitle">High Volume Air Sampler</string>
+
+    <string name="unable_to_connect">Unable to Connect</string>
+    <string name="connection_lost">Connection Lost</string>
+    <string name="connected">Connected</string>
+    <string name="connection">Connection</string>
+    <string name="battery">Battery</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="temperature">Temperature</string>
+    <string name="sensor_data">Sensor Data</string>
+    <string name="pump_data">Pump Data</string>
+    <string name="pump_time">Pump time</string>
+    <string name="load_pump">Load Pump</string>
+    <string name="start_sampling">Start Sampling</string>
+    <string name="stop_sampling">Stop Sampling</string>
+    <string name="long_time_sampling">Long sampling time</string>
+    <string name="monitor_sampling">Monitor Sampling</string>
+    <string name="time_sampling">Time sampling</string>
+    <string name="minutes_sampling">Minutes sampling</string>
+    <string name="seconds_sampling">Seconds sampling</string>
+    <string name="print">Print</string>
+    <string name="show_list">Show List</string>
+    <string name="file_number">File Number</string>
+    <string name="list_data">List Data</string>
+    <string name="gps_user">GPS User</string>
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="save_set">Save set</string>
+    <string name="get_location">Get location</string>
+    <string name="load_set">Load set</string>
+    <string name="gps_user_set">GPS User Set</string>
+    <string name="setting_gps">Setting GPS</string>
+    <string name="print_data">Print Data</string>
+    <string name="sampling">Sampling</string>
+    <string name="colon">:</string>
+    <string name="device_navigation">Device Navigation</string>
+    <string name="menu">Menu</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="back">Back</string>
+    <string name="enter">Ent</string>
+
+    <string name="one_string_with_white_space_in_the_beginning_pattern"> %1$s</string>
+    <string name="two_string_with_white_space_pattern">%1$s %2$s</string>
+
+</resources>

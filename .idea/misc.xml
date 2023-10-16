@@ -1,0 +1,23 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/bluetooth_ic.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/border_button2.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/hvastype.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_devices_other_24.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_bluetooth.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25277777777777777" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2633768774472251" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.22729201937179236" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.14361702127659576" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
