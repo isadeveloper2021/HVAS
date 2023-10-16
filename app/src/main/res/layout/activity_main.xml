@@ -216,7 +216,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_setting_gps"
+                android:id="@+id/cv_stop_sensor_data"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:layout_row="1"
@@ -237,10 +237,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:drawablePadding="4dp"
-                    android:text="@string/setting_gps"
+                    android:text="@string/stop_sensor_data"
                     android:textAlignment="center"
                     android:textColor="#ffffff"
-                    app:drawableTopCompat="@drawable/ic_gps"
+                    app:drawableTopCompat="@drawable/ic_stop"
                     tools:ignore="RtlCompat" />
 
             </androidx.cardview.widget.CardView>
@@ -520,103 +520,6 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_pump_data_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/cv_sensor_data_list">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pump_data"
-                    android:textColor="@color/text_color_normal"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/pump_time"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:id="@+id/tv_time_sampling"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:textColor="@color/text_color_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_load_pump"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/load_pump"
-                        android:textAllCaps="false"
-                        android:textColor="#ffffff"
-                        android:visibility="gone"
-                        tools:ignore="MissingConstraints" />
-
-                    <Button
-                        android:id="@+id/btn_start_sampling"
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/start_sampling"
-                        android:textAllCaps="false"
-                        android:textColor="#ffffff"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toEndOf="@+id/btn_load_pump"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_pump_data_list"
-                        tools:ignore="MissingConstraints" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
             android:id="@+id/cv_monitor_sampling_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -629,7 +532,7 @@
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="4dp"
             app:cardElevation="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/cv_pump_data_list">
+            app:layout_constraintTop_toBottomOf="@+id/cv_sensor_data_list">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -689,7 +592,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.6"
-                        android:text="@string/humidity"
+                        android:text="@string/pressure"
                         android:textColor="@color/text_color_normal" />
 
                     <TextView
@@ -702,7 +605,7 @@
                         android:textColor="@color/text_color_normal" />
 
                     <TextView
-                        android:id="@+id/tv_monitor_humidity"
+                        android:id="@+id/tv_monitor_pressure"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -722,7 +625,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.6"
-                        android:text="@string/pressure"
+                        android:text="@string/humidity"
                         android:textColor="@color/text_color_normal" />
 
                     <TextView
@@ -735,7 +638,7 @@
                         android:textColor="@color/text_color_normal" />
 
                     <TextView
-                        android:id="@+id/tv_monitor_pressure"
+                        android:id="@+id/tv_monitor_humidity"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -966,16 +869,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:enabled="false"
+                        android:background="@drawable/background_border_edit_text"
                         android:hint="0 - ~ "
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
                         android:inputType="number"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="8dp"
                         android:textAlignment="center"
-                        android:textColor="@color/text_color_normal"
+                        android:textColor="#616060"
                         android:textSize="13sp"
                         android:visibility="gone"
-                        tools:ignore="RtlCompat" />
+                        tools:text="123"/>
 
                 </LinearLayout>
 
@@ -999,381 +904,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:text="@string/print"
-                        android:textAllCaps="false"
-                        android:visibility="gone" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_gps_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/cv_list_data">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gps_user"
-                    android:textColor="@color/text_color_normal"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/name"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:id="@+id/tv_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:textColor="@color/text_color_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/location"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:id="@+id/tv_location"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:textColor="@color/text_color_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/latitude"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:id="@+id/tv_latitude"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:textColor="@color/text_color_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/longitude"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:id="@+id/tv_longitude"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:textColor="@color/text_color_normal" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_gps_user_set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="2dp"
-            app:layout_constraintTop_toBottomOf="@+id/cv_gps_user">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gps_user_set"
-                    android:textColor="@color/text_color_normal"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/name"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <EditText
-                        android:id="@+id/et_name_set"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:background="@drawable/edit_text_border"
-                        android:imeOptions="actionDone"
-                        android:importantForAutofill="no"
-                        android:inputType="textCapWords"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:textColor="@color/text_color_normal"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/location"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <EditText
-                        android:id="@+id/et_location_set"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:background="@drawable/edit_text_border"
-                        android:imeOptions="actionDone"
-                        android:importantForAutofill="no"
-                        android:inputType="textCapWords"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:textColor="@color/text_color_normal"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/latitude"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <EditText
-                        android:id="@+id/et_latitude_set"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:background="@drawable/edit_text_border"
-                        android:imeOptions="actionDone"
-                        android:importantForAutofill="no"
-                        android:inputType="textCapWords"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:textColor="@color/text_color_normal"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2.2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:text="@string/longitude"
-                        android:textColor="@color/text_color_normal" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.2"
-                        android:text="@string/colon"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color_normal" />
-
-                    <EditText
-                        android:id="@+id/et_longitude_set"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:background="@drawable/edit_text_border"
-                        android:imeOptions="actionDone"
-                        android:importantForAutofill="no"
-                        android:inputType="textCapWords"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:textColor="@color/text_color_normal"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btn_load_set"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/load_set"
-                        android:textAllCaps="false"
-                        android:visibility="gone" />
-
-                    <Button
-                        android:id="@+id/btn_get_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/get_location"
                         android:textAllCaps="false"
                         android:visibility="gone" />
 

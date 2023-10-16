@@ -31,7 +31,7 @@ public class ListDataAdapter extends RecyclerView.Adapter<ListDataAdapter.ViewHo
     public void onBindViewHolder(@NonNull ListDataAdapter.ViewHolder holder, int position) {
         holder.binding.tvData.setText(dataList.get(position));
 
-        holder.binding.tvData.setOnClickListener(view -> itemListener.onItemClicked(dataList.get(holder.getAdapterPosition()), holder.getAdapterPosition()));
+//        holder.binding.tvData.setOnClickListener(view -> itemListener.onItemClicked(dataList.get(holder.getAdapterPosition()), holder.getAdapterPosition()));
     }
 
     @Override

@@ -42,6 +42,7 @@
     <string name="sampling">Sampling</string>
     <string name="colon">:</string>
     <string name="device_navigation">Device Navigation</string>
+    <string name="stop_sensor_data">Stop Sensor Data</string>
     <string name="menu">Menu</string>
     <string name="up">Up</string>
     <string name="down">Down</string>

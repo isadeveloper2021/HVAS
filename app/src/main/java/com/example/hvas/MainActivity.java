@@ -53,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
     String[] items = {"PM 10", "PM 2.5", "TSP"};
     ArrayAdapter<String> adapterItems;
     BluetoothSPP bluetooth;
-    String sensorData, loadPump, startSampling, stopSampling, showList, print, loadSet, saveSet;
+    String sensorData, stopSensorData, loadPump, startSampling, stopSampling, showList, print, loadSet, saveSet;
     String menuCommand, upCommand, downCommand, backCommand, enterCommand;
     List<String> dataList = new ArrayList<>();
     Integer dataIndex;
     boolean isSamplingRunning = false;
+    boolean isSensorDataRunning = false;
     int REQUEST_LOCATION = 88;
 
     /*Permission*/
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*Command*/
         sensorData = "000A"; // 000A
+        stopSensorData = "000B"; // 000B
         loadPump = "B"; // Hapus
         startSampling = "000C"; //000C
         stopSampling = "STOP";
@@ -164,62 +166,23 @@ public class MainActivity extends AppCompatActivity {
 
         binding.cvSensorData.setOnClickListener(v -> {
             if (bluetooth.getServiceState() != -1) {
-                bluetooth.send(sensorData, false);
-                Toast.makeText(getApplicationContext(), "Data Sent", Toast.LENGTH_SHORT).show();
-                bluetooth.setOnDataReceivedListener((data, message) -> {
-                    String receivedData = new String(data);
-                    String[] bagi = receivedData.split(",");
-                    binding.tvTemp.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 0), "C"));
-                    binding.tvHumidity.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 1), "RH"));
-                    binding.tvPressure.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 2), "hPa"));
-                    binding.tvBattery.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 3), "V"));
-                    Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
-                });
+                if (!isSensorDataRunning) {
+                    bluetooth.send(sensorData, false);
+                    Toast.makeText(getApplicationContext(), "Data Sent", Toast.LENGTH_SHORT).show();
+                    bluetooth.setOnDataReceivedListener((data, message) -> {
+                        String receivedData = new String(data);
+                        String[] bagi = receivedData.split(",");
+                        binding.tvTemp.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 0), "C"));
+                        binding.tvHumidity.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 1), "RH"));
+                        binding.tvPressure.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 2), "hPa"));
+                        binding.tvBattery.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 3), "V"));
+                        Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
+                    });
+                }
             } else {
                 checkBluetoothAvailability();
             }
         });
-
-        /*binding.btnLoadPump.setOnClickListener(v -> {
-            binding.btnStartSampling.setVisibility(View.VISIBLE);
-            bluetooth.send(loadPump, false);
-            Toast.makeText(getApplicationContext(), "Data Sent", Toast.LENGTH_SHORT).show();
-            bluetooth.setOnDataReceivedListener((data, message) -> {
-                String receivedData = new String(data);
-                String[] bagi = receivedData.split(",");
-                binding.tvTimeSampling.setText(getString(R.string.two_string_with_white_space_pattern, bagi[0], "Minutes"));
-                Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
-            });
-        });*/
-
-        /*binding.btnStartSampling.setOnClickListener(v -> {
-            bluetooth.send(startSampling, false);
-            Toast.makeText(MainActivity.this, "Data Sent", Toast.LENGTH_SHORT).show();
-            bluetooth.setOnDataReceivedListener((data, message) -> {
-                String receivedData = new String(data);
-                String[] bagi = receivedData.split(",");
-                binding.tvMonitorTemp.setText(getString(R.string.two_string_with_white_space_pattern, bagi[0], "C"));
-                binding.tvMonitorHumidity.setText(getString(R.string.two_string_with_white_space_pattern, bagi[1], "RH"));
-                binding.tvMonitorPressure.setText(getString(R.string.two_string_with_white_space_pattern, bagi[2], "hPa"));
-                binding.tvMonitorBattery.setText(getString(R.string.two_string_with_white_space_pattern, bagi[3], "V"));
-                binding.tvMonitorTimeSampling.setText(getString(R.string.two_string_with_white_space_pattern, bagi[4], "H"));
-                binding.tvMonitorMinutesSampling.setText(getString(R.string.two_string_with_white_space_pattern, bagi[5], "Minutes"));
-                binding.tvMonitorSecondsSampling.setText(getString(R.string.two_string_with_white_space_pattern, bagi[6], "Seconds"));
-                binding.tvMonitorLongSamplingTime.setText(getString(R.string.two_string_with_white_space_pattern, bagi[7], "Minutes"));
-                Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
-
-                if (binding.tvMonitorMinutesSampling != binding.tvMonitorLongSamplingTime) {
-                    Toast.makeText(MainActivity.this, "Sampling On Process", Toast.LENGTH_SHORT).show();
-                } else {
-                    try {
-                        Thread.sleep(1000);
-                        Toast.makeText(MainActivity.this, "Sampling Done", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        });*/
 
         binding.cvSampling.setOnClickListener(v -> {
             if (isSamplingRunning) {
@@ -232,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
                     bluetooth.setOnDataReceivedListener((data, message) -> {
                         String receivedData = new String(data);
                         String[] bagi = receivedData.split(",");
-                        binding.tvTimeSampling.setText(getString(R.string.two_string_with_white_space_pattern, bagi[0], "Minutes"));
                         Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
                     });
                 } else {
@@ -249,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
                         String receivedData = new String(data);
                         String[] bagi = receivedData.split(",");
                         binding.tvMonitorTemp.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 0), "C"));
-                        binding.tvMonitorHumidity.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 1), "RH"));
-                        binding.tvMonitorPressure.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 2), "hPa"));
+                        binding.tvMonitorPressure.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 1), "hPa"));
+                        binding.tvMonitorHumidity.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 2), "RH"));
                         binding.tvMonitorBattery.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 3), "V"));
                         binding.tvMonitorTimeSampling.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 4), "H"));
                         binding.tvMonitorMinutesSampling.setText(getString(R.string.two_string_with_white_space_pattern, checkIfArrayIsOutOfBond(bagi, 5), "Minutes"));
@@ -295,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
             dataList.addAll(Arrays.asList(dataSplitted));
             ListDataAdapter listDataAdapter = new ListDataAdapter(dataList, (data, index) -> {
                 dataIndex = index;
-                binding.etPrintNumber.setText(data);
             });
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, RecyclerView.HORIZONTAL, false);
             binding.rvListData.setLayoutManager(linearLayoutManager);
@@ -308,90 +269,44 @@ public class MainActivity extends AppCompatActivity {
                 dataList.addAll(Arrays.asList(dataSplitted));
                 ListDataAdapter listDataAdapter = new ListDataAdapter(dataList, (dataSelected, index) -> {
                     dataIndex = index;
-                    binding.etPrintNumber.setText(dataSelected);
                 });
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, RecyclerView.HORIZONTAL, false);
                 binding.rvListData.setLayoutManager(linearLayoutManager);
                 binding.rvListData.setAdapter(listDataAdapter);
                 Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
             });
+
             binding.btnPrint.setVisibility(View.VISIBLE);
             binding.etPrintNumber.setVisibility(View.VISIBLE);
         });
 
         binding.btnPrint.setOnClickListener(v -> {
-            if (dataIndex == null) {
+            if (binding.etPrintNumber.getText() != null && binding.etPrintNumber.getText().toString().equalsIgnoreCase("")) {
                 Toast.makeText(getApplicationContext(), "Harap mengisi nomor file yang ingin diprint dengan cara memilih nomor yang tersedia", Toast.LENGTH_LONG).show();
-            } else {
-                bluetooth.send(print + "[" + dataIndex + "]", false);
-                Toast.makeText(getApplicationContext(), "Printing running", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (binding.etPrintNumber.getText() != null && binding.etPrintNumber.getText().toString().trim().equalsIgnoreCase("")) {
+                Toast.makeText(getApplicationContext(), "Harap mengisi nomor file yang ingin diprint dengan cara memilih nomor yang tersedia", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            bluetooth.send(print + "[" + binding.etPrintNumber.getText().toString() + "]", false);
+            Toast.makeText(getApplicationContext(), "Printing running", Toast.LENGTH_SHORT).show();
         });
 
-        binding.cvSettingGps.setOnClickListener(v -> {
-            binding.btnLoadSet.setVisibility(View.VISIBLE);
-            Toast.makeText(getApplicationContext(), "Harap menekan tombol load set", Toast.LENGTH_SHORT).show();
-        });
-
-        binding.btnLoadSet.setOnClickListener(v -> {
+        binding.cvStopSensorData.setOnClickListener(v -> {
             if (bluetooth.getServiceState() != -1) {
-                bluetooth.send(loadSet, false);
-                Toast.makeText(getApplicationContext(), "Data Sent", Toast.LENGTH_SHORT).show();
-                bluetooth.setOnDataReceivedListener((data, message) -> {
-                    String receivedData = new String(data);
-                    String[] bagi = receivedData.split(",");
-                    binding.etNameSet.setText(checkIfArrayIsOutOfBond(bagi, 0));
-                    binding.etLocationSet.setText(checkIfArrayIsOutOfBond(bagi, 1));
-                    binding.etLatitudeSet.setText(checkIfArrayIsOutOfBond(bagi, 2));
-                    binding.etLongitudeSet.setText(checkIfArrayIsOutOfBond(bagi, 3));
-                    Toast.makeText(getApplicationContext(), "Data Received", Toast.LENGTH_SHORT).show();
-                });
-                binding.btnGetLocation.setVisibility(View.VISIBLE);
-                binding.etNameSet.setVisibility(View.VISIBLE);
-                binding.etLocationSet.setVisibility(View.VISIBLE);
-                binding.etLatitudeSet.setVisibility(View.VISIBLE);
-                binding.etLongitudeSet.setVisibility(View.VISIBLE);
+                if (isSensorDataRunning) {
+                    bluetooth.send(stopSensorData, false);
+                    Toast.makeText(getApplicationContext(), "Data Sent", Toast.LENGTH_SHORT).show();
+                    bluetooth.setOnDataReceivedListener((data, message) -> {
+                        Toast.makeText(getApplicationContext(), "Sensor data has been successfully stopped", Toast.LENGTH_SHORT).show();
+                    });
+                }
             } else {
                 checkBluetoothAvailability();
             }
-        });
-
-        binding.btnGetLocation.setOnClickListener(v -> {
-            FusedLocationProviderClient mFusedLocation = LocationServices.getFusedLocationProviderClient(MainActivity.this);
-            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getApplication(), "GPS Not Found. Please check permission your location apps", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            mFusedLocation.getLastLocation().addOnSuccessListener(MainActivity.this, location -> {
-                if (location != null) {
-
-                    try {
-                        Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
-                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                        String address = addresses.get(0).getAddressLine(0);
-
-                        Toast.makeText(MainActivity.this, "" + address, Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    double lattt = location.getLatitude();
-                    double lonttt = location.getLongitude();
-                    String lats = String.valueOf(lattt);
-                    String lons = String.valueOf(lonttt);
-                    lats = lats.substring(0, lats.length() - 1);
-                    lons = lons.substring(0, lons.length() - 1);
-                    binding.etLatitudeSet.setText(getString(R.string.one_string_with_white_space_in_the_beginning_pattern, lats));
-                    binding.etLongitudeSet.setText(getString(R.string.one_string_with_white_space_in_the_beginning_pattern, lons));
-
-                    Toast.makeText(MainActivity.this,
-                            "Lat: " + lats + " Long: " + lons,
-                            Toast.LENGTH_LONG).show();
-
-                } else {
-                    Toast.makeText(MainActivity.this, "Not Get Location. Please turn on your GPS smartphone", Toast.LENGTH_SHORT).show();
-                }
-            });
         });
 
         binding.btnMenu.setOnClickListener(view -> {
